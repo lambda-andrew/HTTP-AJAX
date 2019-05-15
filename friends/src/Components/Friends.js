@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import FriendCard from './FriendCard';
+import AddFriend from './AddFriend'
 
 class Friends extends React.Component {
     state = {
@@ -26,6 +27,7 @@ class Friends extends React.Component {
         return (
             <div>
                 <FriendCard friends={this.state.friends}/>
+                <AddFriend />
             </div>
         )
     }
