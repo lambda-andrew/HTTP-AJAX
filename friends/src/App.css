@@ -1,0 +1,19 @@
+.App{
+    display: flex;
+}
+
+.FriendsList {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.AddFriend {
+    width: 100%;
+}
+
+.AddFriend form {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+}
