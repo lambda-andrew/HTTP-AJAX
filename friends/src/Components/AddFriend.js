@@ -1,27 +1,12 @@
 import React from 'react';
 
-function AddFriend() {
+function AddFriend(props) {
     return (
-        <form>
-            <input 
-                type="text"
-                name="name"
-                value="name"
-                placeholder="Name"
-            />
-            <input 
-                type="text"
-                name="age"
-                value="age"
-                placeholder="Age"
-            />
-            <input 
-                type="text"
-                name="email"
-                value="email"
-                placeholder="Email"
-            />
-            <button>Add Friend</button>
+        <form onSubmit={props.friendFormSubmit}>
+            <input name="name" placeholder="Name" value={props.addFriendName} onChange={props.handleNameChange}></input>
+            <input name="age" placeholder="Age" value={props.addFriendAge} onChange={props.handleAgeChange}></input>
+            <input name="email" placeholder="Email" value={props.addFriendEmail} onChange={props.handleEmailChange}></input>
+            <button type="submit" onClick={props.friendFormSubmit}>Click to add a friend!</button>
         </form>
     )
 }
