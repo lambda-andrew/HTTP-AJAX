@@ -6,7 +6,7 @@ function AddFriend(props) {
             <input name="name" placeholder="Name" value={props.addFriendName} onChange={props.handleNameChange}></input>
             <input name="age" placeholder="Age" value={props.addFriendAge} onChange={props.handleAgeChange}></input>
             <input name="email" placeholder="Email" value={props.addFriendEmail} onChange={props.handleEmailChange}></input>
-            <button type="submit" onClick={props.friendFormSubmit}>Click to add a friend!</button>
+            <button type="submit" onClick={props.friendFormSubmit}>Add A Friend!</button>
         </form>
     )
 }

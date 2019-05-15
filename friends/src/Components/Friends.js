@@ -13,11 +13,6 @@ class Friends extends React.Component {
         email: "",
         message: "",
     }
-
-    this.addAFriend = this.addAFriend.bind(this)
-    this.handleNameChange = this.handleNameChange.bind(this)
-    this.handleAgeChange = this.handleAgeChange.bind(this)
-    this.handleEmailChange = this.handleEmailChange.bind(this)
     }  
 
     componentDidMount() {
@@ -33,7 +28,7 @@ class Friends extends React.Component {
             })})
     }
 
-    addAFriend(e) {
+    addAFriend = (e) => {
         e.preventDefault();
         axios
             .post('http://localhost:5000/friends',{
