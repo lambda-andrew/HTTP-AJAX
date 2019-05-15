@@ -5,7 +5,8 @@ const CardDiv = styled.div`
 width: 900px
 display: flex
 justify-content: center
-flex-wrap: wrap`;
+flex-wrap: wrap-reverse
+`;
 
 function FriendCard(props) {
     return(
