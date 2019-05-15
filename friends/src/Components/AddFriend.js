@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 function AddFriend(props) {
     return (
         <form onSubmit={props.friendFormSubmit}>

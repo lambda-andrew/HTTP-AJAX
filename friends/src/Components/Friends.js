@@ -81,7 +81,7 @@ class Friends extends React.Component {
         console.log(this.state.message);
         return (
             <div>
-                <FriendCard friends={this.state.friends}/>
+                <FriendCard friends={this.state.friends} deleteFriend={this.deleteFriend}/>
                 <AddFriend 
                     friendFormSubmit={this.addAFriend} 
                     addFriendName={this.state.name} 
@@ -89,7 +89,7 @@ class Friends extends React.Component {
                     addFriendEmail={this.state.email}
                     handleNameChange={this.handleNameChange}
                     handleAgeChange={this.handleAgeChange}
-                    handleEmailChange={this.handleEmailChange}/> 
+                    handleEmailChange={this.handleEmailChange} />
             </div>
         )
     }

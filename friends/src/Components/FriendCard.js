@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom'; 
 
 function FriendCard(props) {
     return(
@@ -8,6 +9,7 @@ function FriendCard(props) {
                     <h4>{friend.name}</h4>
                     <p>{friend.age}</p>
                     <p>{friend.email}</p>
+                    <button onClick={props.deleteFriend}>Delete Friend</button>
                 </div>
             ))}
         </>
