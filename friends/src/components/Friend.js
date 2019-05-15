@@ -2,7 +2,7 @@ import React from 'react';
 
 const Friend = props => {
     return(
-        <div>
+        <div className='friend'>
             <h2>{props.data.name}</h2>
             <ul>
                 <li>{`Age: ${props.data.age}`}</li>
