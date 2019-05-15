@@ -1,9 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom'; 
+import styled from 'styled-components';
+
+const CardDiv = styled.div`
+width: 500px
+display: flex
+flex-wrap: wrap`;
 
 function FriendCard(props) {
     return(
-        <>
+        <CardDiv>
             {props.friends.map(friend => (
                 <div className="friendCard" key={friend.id}>
                     <h4>{friend.name}</h4>
@@ -12,7 +17,7 @@ function FriendCard(props) {
                     <button onClick={props.deleteFriend}>Delete Friend</button>
                 </div>
             ))}
-        </>
+        </CardDiv>
     )
 }
 

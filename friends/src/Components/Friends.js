@@ -3,6 +3,14 @@ import axios from 'axios';
 import FriendCard from './FriendCard';
 import AddFriend from './AddFriend'
 
+import styled from 'styled-components';
+
+const FriendsCardsList = styled.div`
+display: flex
+align-items: center
+flex-direction: column
+margin-top: 20px`;
+
 class Friends extends React.Component {
     constructor(){
     super()
@@ -80,8 +88,7 @@ class Friends extends React.Component {
     render() {
         console.log(this.state.message);
         return (
-            <div>
-                <FriendCard friends={this.state.friends} deleteFriend={this.deleteFriend}/>
+            <FriendsCardsList>
                 <AddFriend 
                     friendFormSubmit={this.addAFriend} 
                     addFriendName={this.state.name} 
@@ -90,7 +97,8 @@ class Friends extends React.Component {
                     handleNameChange={this.handleNameChange}
                     handleAgeChange={this.handleAgeChange}
                     handleEmailChange={this.handleEmailChange} />
-            </div>
+                <FriendCard friends={this.state.friends} deleteFriend={this.deleteFriend}/>
+            </FriendsCardsList>
         )
     }
 }
