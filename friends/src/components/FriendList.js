@@ -7,14 +7,19 @@ class FriendList extends React.Component {
 constructor(props){
     super(props);
 
-    this.state = {
-
+     this.state = {
+        
     }
 }
 
 deleteCard = (e, friend) => {
     e.preventDefault();
     this.props.deleteCard(friend.id)
+}
+
+ populateHandler = (e, friend) => {
+    e.preventDefault();
+    this.props.populateForm(friend)
 }
 
  render() {
@@ -42,7 +47,7 @@ deleteCard = (e, friend) => {
                         <p>{friend.name}</p>
                         <p>{friend.age}</p>
                         <p>{friend.email}</p>
-                        <Button>Update</Button>
+                        <Button onClick={(e) => this.populateHandler(e, friend)}>Update</Button>
                     </Card>
                 )
             })}

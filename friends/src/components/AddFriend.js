@@ -8,7 +8,7 @@ class AddFriend extends Component {
      super(props);
 
      this.state = {
-        friendInfo: {
+        friendInfo: this.props.activeFriend || {
           name: '',  
            age: '',
          email: ''
@@ -28,25 +28,19 @@ class AddFriend extends Component {
 
    addCard = (e) => {
        e.preventDefault();
-       this.props.addCard(this.state.friendInfo);
+
+       if(this.props.activeFriend){
+           this.props.updateCard(this.state.friendInfo)
+       }else{
+            this.props.addCard(this.state.friendInfo);
+       }
    }
-//    handleSubmit = (e) => {
-//        e.preventDefault();
-//        this.props.addCard(this.state)
-//        this.setState({
-//             name: '',
-//             age: '',
-//             email: ''
-//        })
-//    }
 
    
-
-
     render(){
         return (
             <FormWrapper>
-                <h1>Add A Friend!  Hurry!</h1>
+                <h1>{this.props.activeFriend ? "Update Your Friend" : "Add A Friend!  Hurry!"}</h1>
                 <Form onSubmit={this.addCard}>
                     <label>Name</label>
                     <input type="text" 
@@ -66,7 +60,7 @@ class AddFriend extends Component {
                            onChange={this.handleChange}
                            value={this.state.friendInfo.email}
                            />
-                    <Button>Submit</Button>
+                    <Button>{this.props.activeFriend ? "Update Friend" : "Add A Friend"}</Button>
                 </Form>
             </FormWrapper>
         )

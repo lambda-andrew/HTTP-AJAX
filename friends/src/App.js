@@ -16,6 +16,7 @@ class App extends React.Component {
      super(props);
 
      this.state = {
+       activeFriend: null,
         friends: []
      }
   }
@@ -51,47 +52,50 @@ class App extends React.Component {
   }
 
 
+
+
+
+
+
+
+
+
   
-// deleteCard = (friend) => {
-//   const url = `http://localhost:5000/${friend}`
+  populateForm = friend => {
+    this.setState({
+      activeFriend: friend
+    });
 
-//   axios.delete(url)
-//     .then(res => {
-//       this.setState(previousState => {
-//         return {
-//           friends: previousState.friends.filter(f => f !== friend)
-//         }
-//       })
-//     })
-//     .catch(err => console.log(err))
-// }
+    this.props.history.push('/addfriend')
+  }
+
+  updateCard = (friend) => {
+    axios.put(`http://localhost:5000/friends/${friend.id}`, friend)
+    .then(res => {
+      this.setState({
+        activeFriend: null,
+        friends: res.data
+      })
+      this.props.history.push("/")
+    })
+    .catch(res => {console.log(res)})
+  }
 
 
-  // deleteCard = (id) => {
-  //   let friends = this.state.friends.filter(friend => {
-  //     return friend.id !== id;
-  //   })
-  //   this.setState({
-  //     friends: friends
-  //   })
-  // }
 
-  // addCard = (friend) => {
-  //   friend.id = uuid();
-  //   let friends = [...this.state.friends, friend];
-  //   this.setState({
-  //     friends: friends
-  //   })
-  // }
 
   render(){
     console.log(this.state)
   return (
     <div className="App">
         <Navigation />
+
+
         <Route exact path="/" 
-               render={(props) => < FriendList  {...props} friends={this.state.friends} deleteCard={this.deleteCard}/> }/>
-        <Route  path="/addfriend" render={(props) => <AddFriend  {...props} friends={this.state.friends} addCard={this.addCard}/> }/>
+               render={(props) => < FriendList  {...props} friends={this.state.friends} deleteCard={this.deleteCard}   populateForm={this.populateForm}/>   }/>
+
+
+        <Route  path="/addfriend" render={(props) => <AddFriend  {...props} friends={this.state.friends} addCard={this.addCard} updateCard={this.updateCard} activeFriend={this.state.activeFriend}   /> }/>
     </div>
   );
   }
