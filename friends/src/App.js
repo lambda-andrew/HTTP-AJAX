@@ -2,16 +2,149 @@ import React from 'react';
 import axios from 'axios';
 import './App.css';
 import FriendsList from './Components/FriendsList';
+import styled from 'styled-components';
+
+
+const AppDiv = styled.div`
+max-width: 1250px;
+width: 100%;
+margin: 0 auto;
+font-family: lucida grande;
+`;
+
+const HeaderDiv = styled.div`
+height: 60px;
+margin: 0px auto;
+background-color: #3b5998;
+color : white;
+display: flex;
+justify-content: flex-start;
+align-items: center;
+`;
+
+const HeaderH1 = styled.h1`
+margin: 0;
+font-size: 30px;
+padding: 10px;
+`;
+
+const Form = styled.form`
+width: 400px;
+height: 240px;
+display: flex;
+flex-direction: column;
+align-items: center;
+
+
+`;
+
+const BoxDiv = styled.div`
+margin: 10px;
+`;
+
+const FormAndButton = styled.div`
+display: flex;
+justify-content: center;
+height: 290px;
+margin: 30px 0;
+
+`;
+
+const ButtonSection = styled.div`
+display: flex;
+flex-direction: column;
+width: 400px;
+height: 300px;
+border: none;
+align-items: center;
+padding: 80px 0 0 0;
+
+
+`;
+
+const Input = styled.input`
+width: 300px;
+height: 30px;
+border-radius: 10px;
+border : solid lightgrey 1px;
+font-size: 15px;
+padding: 0 10px;
+
+`;
+
+const H5 = styled.h5`
+font-size: 15px;
+margin: 0;
+padding: 10px 0;
+`;
+
+const Button = styled.button`
+width: 240px;
+height: 35px;
+margin: 5px;
+border-radius: 10px;
+font-size: 15px;
+font-weight: bold;
+color: white;
+background-color:  #3b5998;
+:hover {
+  background-color: white;
+  color:#3b5998 ;
+}
+`;
+
+const FriendsListDiv = styled.div`
+display: flex;
+flex-direction: column;
+margin: 20px auto;
+width: 1000px;
+border: solid lightgrey 1px;
+
+`;
+
+const FriendsListHeader = styled.div`
+height: 50px;
+width: 1000px;
+background-color: #dfe3ee;
+
+
+`;
+
+const H2 = styled.h2`
+font-size: 20px;
+padding: 10px;
+margin: 0;
+`;
+
+const FormAndButtonHeader = styled.div`
+height: 50px;
+width: 1000px;
+background-color: #dfe3ee;
+`;
+
+const FormAndButtonSection = styled.div`
+display: flex;
+flex-direction: column;
+margin: 40px auto;
+width: 1000px;
+border: solid lightgrey 1px;
+`;
+
+const FooterDiv = styled.div`
+height: 60px;
+margin: 40px auto;
+background-color: #3b5998;
+`;
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       friends: [],
-      name:'',
-      age:'',
-      email:'',
-      id:''
+      name: '',
+      age: '',
+      email: '',
+      id: ''
     }
   }
   componentDidMount() {
@@ -22,9 +155,9 @@ export default class App extends React.Component {
           friends: response.data
         }))
       })
-          .catch(error => {
-            console.log('Server Error', error)
-          })
+      .catch(error => {
+        console.log('Server Error', error)
+      })
   }
 
   createFriend = event => {
@@ -66,13 +199,13 @@ export default class App extends React.Component {
     })
   }
 
-  updateId= event => {
+  updateId = event => {
     this.setState({
       id: event.target.value
     })
   }
 
-  updateFriend= event => {
+  updateFriend = event => {
     event.preventDefault();
 
     let newFriend = {
@@ -98,37 +231,72 @@ export default class App extends React.Component {
       });
   }
 
-render() {
-  return (
-    <div className="App">
-      <FriendsList friends={this.state.friends} />
 
-      <form>
-        <input
+  render() {
+    return (
+      <AppDiv>
+        <HeaderDiv>
+          <HeaderH1>FriendsBook</HeaderH1>
+        </HeaderDiv>
+
+        <FormAndButtonSection>
+        <FormAndButtonHeader>
+            <H2>Add/Update/Delete Friends</H2>
+          </FormAndButtonHeader>
+
+          <FormAndButton>
+          <Form>
+            {/* <input
           placeholder='id'
           type='text'
           name='id'
           onChange = {this.updateId}
-        />
-        <input
-          placeholder='name'
-          type='text'
-          name='name'
-          onChange={this.updateName} />
-        <input
-          placeholder='age'
-          type='text'
-          name='age' />
-        <input
-          placeholder='email'
-          type='text'
-          name='email' />
+        /> */}
+            <BoxDiv>
+              <H5>Friend's Name</H5>
+              <Input
+                placeholder='name'
+                type='text'
+                name='name'
+                onChange={this.updateName} /></BoxDiv>
 
-      </form>
-      <button onClick= {(event)=> this.createFriend(event)} >Create New Friend </button>
+            <BoxDiv>
+              <H5>Friend's Age</H5>
+              <Input
+                placeholder='age'
+                type='text'
+                name='age' /></BoxDiv>
 
-      <button onClick={(event)=> this.deleteFriend(event)}>Delete Friend</button>
-    </div>
-  );
-}
+            <BoxDiv>
+              <H5>Friend's Email</H5>
+              <Input
+                placeholder='email'
+                type='text'
+                name='email' /></BoxDiv>
+
+          </Form>
+
+          <ButtonSection>
+            <Button onClick={(event) => this.createFriend(event)} >Create New Friend </Button>
+            <Button onClick={(event) => this.updateFriend(event)}> Update </Button>
+            <Button onClick={(event) => this.deleteFriend(event)}>Delete Friend</Button>
+          </ButtonSection>
+
+        </FormAndButton>
+        </FormAndButtonSection>
+
+        <FriendsListDiv>
+          <FriendsListHeader>
+            <H2>Your Friends</H2>
+          </FriendsListHeader>
+          <FriendsList friends={this.state.friends} />
+        </FriendsListDiv>
+
+        <FooterDiv>
+         <p></p>
+        </FooterDiv>
+
+      </AppDiv>
+    );
+  }
 }
