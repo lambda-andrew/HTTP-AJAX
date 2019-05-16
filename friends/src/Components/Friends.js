@@ -8,7 +8,8 @@ import styled from 'styled-components';
 const FriendsCardsList = styled.div`
 display: flex
 align-items: center
-flex-direction: column`;
+flex-direction: column
+`;
 
 class Friends extends React.Component {
     constructor(){

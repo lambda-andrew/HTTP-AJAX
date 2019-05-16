@@ -11,11 +11,13 @@
   border: 2px solid grey;
   display: flex;
   flex-direction: column;
+  margin-bottom: 20px;
   h1 {
     margin-bottom: 0;
     margin-top: 5px;
     font-size: 3.5rem;
     font-family: 'Courgette', cursive;
+    text-shadow: 10px 10px 20px steelblue;
   }
 }
 
@@ -58,6 +60,7 @@
   margin: 10px;
   background-color: #1B5D76;
   color: white;
+  box-shadow: 10px 10px 20px steelblue;
   h4{
     font-family: 'Courgette', cursive;
     font-size: 2rem;
@@ -85,6 +88,7 @@ form {
     text-align: center;
     border-radius: 6px;
     font-family: 'Open Sans', sans-serif;
+    box-shadow: 10px 10px 20px steelblue;
   }
   button {
     margin: 5px 0;
@@ -93,7 +97,9 @@ form {
     background-color: #1B5D76;
     color: white;
     border-radius: 6px;
+    border: 2px solid grey;
     font-family: 'Courgette', cursive;
     font-size: 1rem;
+    box-shadow: 10px 10px 20px steelblue;
   }
 }
