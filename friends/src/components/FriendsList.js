@@ -4,13 +4,10 @@ import AddNewFriend from './AddNewFriend';
 
 function FriendsList (props) {
     return(
-        console.log('from friendslist'),
-        console.log(props),
-        console.log(props.data),
         <div className='container'>
             <div className='FriendsList'>
                 {props.data.map(friend => {
-                    return <Friend {...props} data={friend} delete={props.delete}/>
+                    return <Friend {...props} key={friend.id} data={friend} delete={props.delete} update={props.update}/>
                 })}
             </div>
             <div className='AddFriend'>

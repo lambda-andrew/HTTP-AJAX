@@ -33,7 +33,6 @@ class AddNewFriend extends React.Component {
 
     render() {
         return(
-            console.log(this.state.newFriend),
             <form onSubmit={this.submit}>
                 <label>Add a New Friend</label>
                 <input onChange={this.handlesChanges} value={this.state.newFriend.name} name='name' placeholder='Name of New Friend' type='text'/>

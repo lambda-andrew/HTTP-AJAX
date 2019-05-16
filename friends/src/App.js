@@ -13,8 +13,6 @@ class App extends React.Component {
   componentDidMount () {
     axios.get('http://localhost:5000/friends')
       .then( res => {
-        console.log(`from cdm`)
-        console.log(res.data)
         this.setState({
           friends: res.data
         })
@@ -42,12 +40,20 @@ class App extends React.Component {
       .catch(err => console.log(err))
   }
 
+  updateFriend = (updatedFriend, id) => {
+    axios.put(`http://localhost:5000/friends/${id}`, updatedFriend)
+      .then(res => {
+        this.setState({
+          friends: res.data
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
-    console.log('from render')
-    console.log(this.state.friends)
     return (
       <div className="App">
-        <Route exact path='/' render={ props => <FriendsList {...props} data={this.state.friends} addFriend={this.addFriend} delete={this.deleteFriend}/> } />
+        <Route exact path='/' render={ props => <FriendsList {...props} data={this.state.friends} addFriend={this.addFriend} delete={this.deleteFriend} update={this.updateFriend}/> } />
       </div>
     );
   }

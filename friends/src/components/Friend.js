@@ -22,7 +22,7 @@ class Friend extends React.Component {
         if(!this.state.updateInfo) {
             return <CurrentInfo {...this.props} data={this.props.data} delete={this.deleteHandler} update={this.updateDisplay}/>
         } else {
-            return <UpdateInfo {...this.props} data={this.props.data} update={this.updateDisplay}/>
+            return <UpdateInfo {...this.props} data={this.props.data} updateDisplay={this.updateDisplay} update={this.props.update}/>
         }
     }
 }
