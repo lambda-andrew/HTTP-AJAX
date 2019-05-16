@@ -15,7 +15,6 @@ function FriendCard(props) {
         props.deleteFriend(id)
       };
 
-
     return(
         <CardDiv>
             {props.friends.map(friend => (

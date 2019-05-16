@@ -65,7 +65,6 @@ class Friends extends React.Component {
     }
 
     deleteFriend = id => {
-        console.log("Friendship ended!")
         axios
         .delete(`http://localhost:5000/friends/${id}`)
         .then(res => {
