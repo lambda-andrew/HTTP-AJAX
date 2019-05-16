@@ -5,8 +5,7 @@ const CardDiv = styled.div`
 width: 900px
 display: flex
 justify-content: center
-flex-wrap: wrap-reverse
-`;
+flex-wrap: wrap-reverse`;
 
 function FriendCard(props) {
 
@@ -22,7 +21,7 @@ function FriendCard(props) {
                     <h4>{friend.name}</h4>
                     <p>Age: {friend.age}</p>
                     <p>Email: {friend.email}</p>
-                    <button onClick={(event) => deleteHandler(event, friend.id)}>Delete Friend</button>
+                    <button onClick={(event) => deleteHandler(event, friend.id)}>Delete Friend!</button>
                 </div>
             ))}
         </CardDiv>

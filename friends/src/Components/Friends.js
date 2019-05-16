@@ -8,8 +8,7 @@ import styled from 'styled-components';
 const FriendsCardsList = styled.div`
 display: flex
 align-items: center
-flex-direction: column
-margin-top: 20px`;
+flex-direction: column`;
 
 class Friends extends React.Component {
     constructor(){
@@ -88,15 +87,18 @@ class Friends extends React.Component {
 
     render() {
         return (
-            <FriendsCardsList>
-                <AddFriend 
-                    friendFormSubmit={this.addAFriend} 
-                    addFriendName={this.state.name} 
-                    addFriendAge={this.state.age} 
-                    addFriendEmail={this.state.email}
-                    handleChange={this.handleChange} />
-                <FriendCard friends={this.state.friends} deleteFriend={this.deleteFriend}/>
-            </FriendsCardsList>
+            <>
+                <h1>Shamless!</h1>
+                <FriendsCardsList>
+                    <AddFriend 
+                        friendFormSubmit={this.addAFriend} 
+                        addFriendName={this.state.name} 
+                        addFriendAge={this.state.age} 
+                        addFriendEmail={this.state.email}
+                        handleChange={this.handleChange} />
+                    <FriendCard friends={this.state.friends} deleteFriend={this.deleteFriend}/>
+                </FriendsCardsList>
+            </>
         )
     }
 }
