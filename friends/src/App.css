@@ -1,0 +1,29 @@
+.App {
+    text-align: center;
+    width: 900px;
+    margin: 0 auto;
+}
+
+a {
+    color: white;
+    background: lightblue;
+    text-decoration: none;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 20%;
+}
+.active{
+    background: lightskyblue;
+}
+
+.navigation{
+    margin: 0 auto;
+    width: 60%;
+    display: flex;
+    justify-content: space-evenly;
+    padding: 5px 10px;
+}

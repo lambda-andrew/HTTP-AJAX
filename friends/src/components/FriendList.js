@@ -1,11 +1,18 @@
 import React from 'react';
-import FriendCard from './FriendCard';
 
 const FriendList = (props) => {
+  const friends = props.friendListProps.find(
+    friend => `${friend.id}` === props.match.params.id
+  )
+
     return(
-     <div className="movie-list">
+     <div>
         {props.friendListProps.map(friend => (
-        <FriendCard key={friend.id} friendCardProps={friend} friendDeleteProps={props.deleteFriend}/>
+        <div>
+        <h1>{friend.name}</h1>
+        <h3>{friend.age}</h3>
+        <h3>{friend.email}</h3>
+        </div>
         ))}
       </div>
     )

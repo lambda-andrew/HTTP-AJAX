@@ -2,7 +2,8 @@ import React from 'react';
 import Axios from 'axios';
 import {Route} from 'react-router-dom';
 import AppNav from './AppNav';
-// import Friend from './components/Friend';
+import './App.css'
+
 import FriendList from './components/FriendList';
 import FriendForm from './FriendForm.js';
 
@@ -11,9 +12,6 @@ class App extends React.Component{
     super();
     this.state={
       friends: [],
-      name: "",
-      age: "",
-      email: "",
       message: "",
     }
     this.addAFriend = this.addAFriend.bind(this)
@@ -35,42 +33,30 @@ class App extends React.Component{
     })
   }
 
-  addAFriend(event){
-    event.preventDefault();
-    Axios.post('http://localhost:5000/friends',{
-      name: this.state.name,
-      age: this.state.age,
-      email: this.state.email,
-    })
+  addAFriend(item){
+    Axios.post('http://localhost:5000/friends', item)
     .then(res =>{
       console.log(res.data)
       this.setState({
         friends: res.data,
-        name:"",
-        age:"",
-        email:"",
-        message: "Gum (from a new friend) would be perfection."
-      })
+      });
+      this.props.history.push("/")
     })
     .catch(err => {
       console.log(err)
-      this.setState({
-        name:"",
-        age:"",
-        email:"",
-        message: "I'm glad we're having a development phase. I rarely test my apps before I launch them."})
     })
   }
 
-  deleteFriend(){
+  deleteFriend(id){
     console.log("Friendship ended!")
-    Axios.delete(`http://localhost:5000/friends/:1`
+    Axios
+    .delete(`http://localhost:5000/friends/${id}`)
     .then(res => {
       this.setState ({
         friends: res.data,
         message: "Alright, I took the quiz, and it turns out I put styling before coding"
         })
-    }))
+    })
     .catch(err => {
       console.log(err)
       this.setState({
@@ -79,40 +65,26 @@ class App extends React.Component{
     })
   }
 
-  handleNameChange = (event) => {
-      console.log(event.target.value)
-      this.setState({
-        name: event.target.value,
-      })
-  }
-  handleAgeChange = (event) => {
-    console.log(event.target.value)
-    this.setState({
-      age: event.target.value,
-    })
-  }
-  handleEmailChange = (event) => {
-  console.log(event.target.value)
-  this.setState({
-    email: event.target.value,
-  })
-  }
-  
   render(){
     return(
-      <div>
+      <div className="App">
         <h1>{this.state.message}</h1>
         <AppNav />
-        <FriendForm 
-        friendFormSubmit={this.addAFriend} 
-        addFriendName={this.state.name} 
-        addFriendAge={this.state.age} 
-        addFriendEmail={this.state.email}
-        handleNameChange={this.handleNameChange}
-        handleAgeChange={this.handleAgeChange}
-        handleEmailChange={this.handleEmailChange}/>
-        <Route exact path="/" render={props => (<FriendList {...props} friendListProps={this.state.friends} deleteFriend={this.deleteFriend}/>) }/>
-        {/* <Route path="/friends/:id" component={Friend} /> */}
+        <Route path="/friendForm" render={
+          props => ( 
+          <FriendForm 
+          {...props}
+          friendFormSubmit={this.addAFriend} 
+          />)}
+        />
+        <Route exact path="/" render={
+            props => (
+            <FriendList 
+            {...props} 
+            friendListProps={this.state.friends} 
+            deleteFriend={this.deleteFriend}
+            />)}
+          />
       </div>
     )
   }
