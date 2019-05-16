@@ -30,8 +30,8 @@ export default class UpdateInfo extends React.Component {
         return(
             <div className='friend'>
                 <div className='friendHeader'>
-                    <h2>Update Friend</h2>
-                    <button onClick={this.props.updateDisplay}>x</button>
+                    <h2>{`Update ${this.state.updateFriend.name}`}</h2>
+                    <button className='headerBtn' onClick={this.props.updateDisplay}>x</button>
                 </div>
                 <form onSubmit={this.updateInfo}>
                     <input onChange={this.handleChanges} name='name' value={this.state.updateFriend.name}/>

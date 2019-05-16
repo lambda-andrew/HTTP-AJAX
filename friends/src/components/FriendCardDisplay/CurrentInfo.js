@@ -5,7 +5,7 @@ const CurrentInfo = props => {
         <div className='friend'>
             <div className='friendHeader'>
                 <h2>{props.data.name}</h2>
-                <button onClick={props.delete}>x</button>
+                <button className='headerBtn' onClick={props.delete}>x</button>
             </div>
             <ul>
                 <li>{`Age: ${props.data.age}`}</li>
