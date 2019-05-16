@@ -71,13 +71,12 @@ class Friends extends React.Component {
         .then(res => {
           this.setState ({
             friends: res.data,
-            message: "Alright, I took the quiz, and it turns out I put styling before coding"
             })
         })
         .catch(err => {
           console.log(err)
           this.setState({
-            message: "Until the age of 25, I thought the only response to 'I love you' was '404' ",
+            message: "Helllooo, Errorrrr!",
           })
         })
       }
