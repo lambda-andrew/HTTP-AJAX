@@ -1,0 +1,26 @@
+.formdiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column nowrap;
+}
+.form{
+    display: flex;
+    flex-flow: column nowrap;
+}
+.addButton {
+    margin-top: 50px;
+    color: white;
+    background: lightblue;
+    text-decoration: none;
+    width: 200px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid black;
+    border-radius: 20%;
+}
+button:hover{
+    background: lightskyblue;
+}

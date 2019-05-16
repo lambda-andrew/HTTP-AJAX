@@ -15,13 +15,11 @@ class App extends React.Component{
       message: "",
     }
     this.addAFriend = this.addAFriend.bind(this)
-    this.deleteFriend = this.deleteFriend.bind(this)
   }
 
   componentDidMount(){
     Axios.get('http://localhost:5000/friends')
     .then(res =>{
-      console.log(res.data)
       this.setState({
         friends: res.data,
         message: "Could I BE anymore of a functioning app?"
@@ -36,7 +34,6 @@ class App extends React.Component{
   addAFriend(item){
     Axios.post('http://localhost:5000/friends', item)
     .then(res =>{
-      console.log(res.data)
       this.setState({
         friends: res.data,
       });
@@ -47,7 +44,7 @@ class App extends React.Component{
     })
   }
 
-  deleteFriend(id){
+  deleteFriend = id => {
     console.log("Friendship ended!")
     Axios
     .delete(`http://localhost:5000/friends/${id}`)
@@ -81,7 +78,7 @@ class App extends React.Component{
             props => (
             <FriendList 
             {...props} 
-            friendListProps={this.state.friends} 
+            friendList={this.state.friends} 
             deleteFriend={this.deleteFriend}
             />)}
           />
