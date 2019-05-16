@@ -2,7 +2,25 @@ import React from 'react';
 import Styled from 'styled-components';
 
 
-const FriendList = ({friends, deleteCard}) => {
+class FriendList extends React.Component {
+
+constructor(props){
+    super(props);
+
+    this.state = {
+
+    }
+}
+
+deleteCard = (e, friend) => {
+    e.preventDefault();
+    this.props.deleteCard(friend.id)
+}
+
+ render() {
+    const {friends, deleteCard} = this.props;
+
+    
 
     if (friends.length === 0) {
         return (
@@ -13,6 +31,7 @@ const FriendList = ({friends, deleteCard}) => {
         );
       }
 
+    
 
     return (
         <CardFlex>
@@ -29,6 +48,7 @@ const FriendList = ({friends, deleteCard}) => {
             })}
         </CardFlex>
     )
+  }
 }
 
 const CardFlex = Styled.div `
