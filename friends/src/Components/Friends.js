@@ -64,29 +64,25 @@ class Friends extends React.Component {
             })
     }
 
-    handleNameChange = (event) => {
-        console.log(event.target.value)
-        this.setState({
-          name: event.target.value,
-        })
-    }
+    deleteFriend = id => {
+        axios
+          .delete(`http://localhost:5000/friends/${id}`)
+          .then(res => {
+            this.setState({
+              items: res.data
+            });
+            this.props.history.push("/");
+          })
+          .then(err => console.log(err));
+      };
 
-    handleAgeChange = (event) => {
-      console.log(event.target.value)
-      this.setState({
-        age: event.target.value,
-      })
-    }
-
-    handleEmailChange = (event) => {
-    console.log(event.target.value)
+    handleChange = (event) => {
     this.setState({
-      email: event.target.value,
+      [event.target.name]: event.target.value,
     })
     }
 
     render() {
-        console.log(this.state.message);
         return (
             <FriendsCardsList>
                 <AddFriend 
@@ -94,9 +90,7 @@ class Friends extends React.Component {
                     addFriendName={this.state.name} 
                     addFriendAge={this.state.age} 
                     addFriendEmail={this.state.email}
-                    handleNameChange={this.handleNameChange}
-                    handleAgeChange={this.handleAgeChange}
-                    handleEmailChange={this.handleEmailChange} />
+                    handleChange={this.handleChange} />
                 <FriendCard friends={this.state.friends} deleteFriend={this.deleteFriend}/>
             </FriendsCardsList>
         )

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import './App.scss';
 
 import Friends from './Components/Friends'
@@ -6,7 +7,7 @@ import Friends from './Components/Friends'
 function App() {
   return (
     <div className="App">
-      <Friends />
+      <Route exact path='/' component={Friends} />
     </div>
   );
 }
