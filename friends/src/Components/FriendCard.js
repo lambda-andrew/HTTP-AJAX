@@ -9,14 +9,21 @@ flex-wrap: wrap-reverse
 `;
 
 function FriendCard(props) {
+
+    const deleteHandler = (event, id) => {
+        event.preventDefault();
+        props.deleteFriend(id)
+      };
+
+
     return(
         <CardDiv>
             {props.friends.map(friend => (
                 <div className="friendCard" key={friend.id}>
-                    <h4>Name: {friend.name}</h4>
+                    <h4>{friend.name}</h4>
                     <p>Age: {friend.age}</p>
                     <p>Email: {friend.email}</p>
-                    <button onClick={props.deleteFriend}>Delete Friend</button>
+                    <button onClick={(event) => deleteHandler(event, friend.id)}>Delete Friend</button>
                 </div>
             ))}
         </CardDiv>
