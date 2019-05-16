@@ -89,7 +89,7 @@ class Friends extends React.Component {
     render() {
         return (
             <>
-                <h1>Shamless!</h1>
+                <h1>Shameless!</h1>
                 <FriendsCardsList>
                     <AddFriend 
                         friendFormSubmit={this.addAFriend} 
