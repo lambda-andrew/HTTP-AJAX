@@ -46,24 +46,6 @@ let friends = [
     age: 47,
     email: 'luis@lambdaschool.com',
   },
-  {
-    id: 4,
-    name: 'Sean',
-    age: 35,
-    email: 'sean@lambdaschool.com',
-  },
-  {
-    id: 5,
-    name: 'Michelle',
-    age: 67,
-    email: 'michelle@gmail.com',
-  },
-  {
-    id: 6,
-    name: 'Luis',
-    age: 47,
-    email: 'luis@lambdaschool.com',
-  },
 ];
 
 app.use(cors());
@@ -75,7 +57,8 @@ app.get('/friends', (req, res) => {
 
 app.post('/friends', (req, res) => {
   const friend = { id: getNewId(), ...req.body };
-  friends = [...friends, friend];
+  // friends = [...friends, friend];
+  friends = [friend, ...friends]
   res.status(201).json(friends);
 });
 

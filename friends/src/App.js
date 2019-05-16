@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 import { Route } from 'react-router-dom';
 import FriendsList from './components/FriendsList';
-import AddNewFriend from './components/AddNewFriend';
 import './App.css';
+
 
 class App extends React.Component {
   state = {
@@ -22,17 +22,32 @@ class App extends React.Component {
       .catch( err => console.log(err))
   }
 
+  addFriend = friend => {
+    axios.post('http://localhost:5000/friends', friend)
+      .then(res => {
+        this.setState({
+          friends: res.data
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
+  deleteFriend = id => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(res => {
+        this.setState({
+          friends: res.data
+        })
+      })
+      .catch(err => console.log(err))
+  }
+
   render() {
     console.log('from render')
     console.log(this.state.friends)
     return (
       <div className="App">
-        <div className='FriendsList'>
-          <Route exact path='/' render={ props => <FriendsList {...props} data={this.state.friends}/> } />
-        </div>
-        <div className='AddFriend'>
-          <AddNewFriend />
-        </div>
+        <Route exact path='/' render={ props => <FriendsList {...props} data={this.state.friends} addFriend={this.addFriend} delete={this.deleteFriend}/> } />
       </div>
     );
   }

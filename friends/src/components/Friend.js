@@ -1,15 +1,30 @@
 import React from 'react';
+import UpdateInfo from './FriendCardDisplay/UpdateInfo';
+import CurrentInfo from './FriendCardDisplay/CurrentInfo';
 
-const Friend = props => {
-    return(
-        <div className='friend'>
-            <h2>{props.data.name}</h2>
-            <ul>
-                <li>{`Age: ${props.data.age}`}</li>
-                <li>{`E-mail: ${props.data.email}`}</li>
-            </ul>
-        </div>
-    )
+class Friend extends React.Component {
+    state = {
+        updateInfo: false
+    }
+    deleteHandler = e => {
+        e.preventDefault();
+        this.props.delete(this.props.data.id)
+    }
+
+    updateDisplay = e  => {
+        e.preventDefault();
+        this.setState({
+            updateInfo: !this.state.updateInfo
+        })
+    }
+
+    render() {
+        if(!this.state.updateInfo) {
+            return <CurrentInfo {...this.props} data={this.props.data} delete={this.deleteHandler} update={this.updateDisplay}/>
+        } else {
+            return <UpdateInfo {...this.props} data={this.props.data} update={this.updateDisplay}/>
+        }
+    }
 }
 
 export default Friend;
